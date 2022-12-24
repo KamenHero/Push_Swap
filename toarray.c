@@ -13,17 +13,36 @@
 #include "./libft/libft.h"
 #include "push_swap.h"
 
+void	ft_checkdup(int *str, int i, int k, t_list *stacka)
+{
+	int	j;
+
+	while (k)
+	{
+		j = 1;
+		while ((j + i) < ft_lstsize(stacka))
+		{
+			if (str[i] == str[j + i])
+				ft_exit();
+			j++;
+		}
+		i++;
+		k--;
+	}
+}
+
 int	*ft_array(t_list *stacka)
 {
 	int		*str;
 	t_list	*tmp;
 	int		i;
 	int		j;
+	int		k;
 
 	j = 0;
-	tmp = stacka;
 	i = ft_lstsize(stacka);
 	tmp = stacka;
+	k = ft_lstsize(stacka);
 	str = malloc(sizeof(int) * i);
 	if (!str)
 		return (0);
@@ -35,20 +54,7 @@ int	*ft_array(t_list *stacka)
 		i--;
 	}
 	ft_sortarray(str, j);
-	if (ft_lstsize(stacka) != 3)
-	{
-		while (str[i])
-		{
-			j = 1;
-			while (str[j])
-			{
-				if (str[i] == str[j + i])
-					ft_exit();
-				j++;
-			}
-			i++;
-		}
-	}
+	ft_checkdup(str, i, k, stacka);
 	return (str);
 }
 

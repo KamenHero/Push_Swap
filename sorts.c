@@ -44,15 +44,13 @@ void	ft_case3(t_list **stacka)
 
 void	ft_case5(t_list **stacka, t_list **stackb)
 {
-	int		*str;
-	t_list	*tmp;
-	int		i;
+	int	*str;
+	int	i;
 
 	i = 0;
-	tmp = (*stacka);
 	str = ft_array(*stacka);
 	i = 0;
-	while (ft_lstsize(*stacka) > 3)
+	while (ft_lstsize(*stacka) != 3)
 	{
 		if (ft_index(*stacka, str[i]) <= 2)
 		{
@@ -103,6 +101,8 @@ void	ft_othercase(t_list **stacka, t_list **stackb, int *str)
 	end = middle + offset;
 	while (*stacka)
 	{
+		if (ft_lstsize(*stacka) == 1)
+			ft_pb(stackb, stacka);
 		while (*stacka)
 		{
 			n = ft_search(stacka, str, start, end);

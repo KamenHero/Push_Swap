@@ -49,10 +49,3 @@ void	ft_backtostacka(t_list **stacka, t_list **stackb, int *str)
 	}
 	free (str);
 }
-
-void	ft_exit(void)
-{
-	ft_putendl_fd("Error", 2);
-	system("leaks push_swap");
-	exit(-1);
-}

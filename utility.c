@@ -13,20 +13,6 @@
 #include "./libft/libft.h"
 #include "push_swap.h"
 
-int	ft_space(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == ' ')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	ft_freed(char **str)
 {
 	int	i;
@@ -81,14 +67,10 @@ t_list	*ft_linkin(int argc, char **argv)
 {
 	char	**str;
 	int		j;
-	int		i;
 	t_list	*stacka;
-	t_list	*temp;
 
 	j = 0;
-	i = 0;
 	stacka = NULL;
-	temp = stacka;
 	if (argc >= 2)
 	{
 		while (argc > 1)

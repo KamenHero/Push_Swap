@@ -12,6 +12,26 @@
 
 #include "libft.h"
 
+void	ft_checkminmax(int sign, unsigned long result)
+{
+	if ((long)(sign * result) < INT_MIN || result > INT_MAX)
+		ft_exit();
+}
+
+void	ft_checklong(int sign, unsigned long result)
+{
+	if (result > 9223372036854775807 && sign == 1)
+		ft_exit();
+	else if (result > 9223372036854775807 && sign == -1)
+		ft_exit();
+}
+
+void	ft_exit(void)
+{
+	ft_putendl_fd("Error", 2);
+	exit(-1);
+}
+
 int	ft_atoi(const char *str)
 {
 	int				i;
@@ -23,20 +43,18 @@ int	ft_atoi(const char *str)
 	result = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	i--;
-	if (str[i++] == '-')
+	if (str[i] == '-')
+	{
 		sign = sign * -1;
+		i++;
+	}
 	else if (str[i] == '+')
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		result = result * 10 + str[i++] - '0';
-		if (result > 9223372036854775807 && sign == 1)
-			exit(1);
-		else if (result > 9223372036854775807 && sign == -1)
-			exit(1);
+		ft_checklong(sign, result);
 	}
-	if ((long)(sign * result) < INT_MIN || sign * result > INT_MAX)
-		exit(1);
+	ft_checkminmax(sign, result);
 	return (sign * result);
 }

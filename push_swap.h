@@ -36,6 +36,5 @@ int		ft_index(t_list *tmp, int i);
 void	ft_othercase(t_list **stacka, t_list **stackb, int *str);
 int		ft_search(t_list **stacka, int *str, int start, int end);
 void	ft_backtostacka(t_list **stacka, t_list **stackb, int *str);
-void	ft_exit(void);
 
 #endif
