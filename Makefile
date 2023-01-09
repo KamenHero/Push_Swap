@@ -28,18 +28,18 @@ SRCS_BONUS =	utility.c\
 OBJ = $(SRCS:.c=.o)
 
 OBJ_BONUS = $(SRCS_BONUS:.c=.o)
-# .SILENT:
+
 all: $(NAME)
 	
 $(NAME): $(OBJ)
 	make -C ./libft
-	gcc -g $(OBJ) ./libft/libft.a -o $(NAME)
+	gcc $(OBJ) ./libft/libft.a -o $(NAME)
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJ_BONUS)
 	make -C ./libft
-	gcc -g $(OBJ_BONUS) ./libft/libft.a -o $(NAME_BONUS)
+	gcc $(OBJ_BONUS) ./libft/libft.a -o $(NAME_BONUS)
 
 clean:
 	make clean -C ./libft
