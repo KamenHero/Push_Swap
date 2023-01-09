@@ -1,44 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   sortingbonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:24:34 by oryadi            #+#    #+#             */
-/*   Updated: 2023/01/07 18:18:51 by oryadi           ###   ########.fr       */
+/*   Created: 2023/01/07 14:59:33 by oryadi            #+#    #+#             */
+/*   Updated: 2023/01/09 16:03:10 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "push_swap.h"
+#include "push_swap_bonus.h"
+#include <libft.h>
 
 void	ft_sa(t_list **stacka)
 {
 	t_list	*temp;
 	t_list	*temp2;
 
-	if (!stacka)
+	if (!(*stacka))
 		return ;
-	temp2 = (*stacka);
-	temp = (*stacka)->next;
-	temp2->next = temp2->next->next;
-	temp->next = temp2;
-	(*stacka) = temp;
-	write(1, "sa\n", 3);
+	if ((*stacka)->next)
+	{
+		temp2 = (*stacka);
+		temp = (*stacka)->next;
+		temp2->next = temp2->next->next;
+		temp->next = temp2;
+		(*stacka) = temp;
+	}
+	else
+		return ;
 }
 
 void	ft_ra(t_list **stacka)
 {
 	t_list	*temp;
 
-	if (!stacka)
+	if (!(*stacka))
 		return ;
-	temp = (*stacka);
-	(*stacka) = (*stacka)->next;
-	ft_lstadd_back(stacka, temp);
-	temp->next = NULL;
-	write(1, "ra\n", 3);
+	if ((*stacka)->next)
+	{
+		temp = (*stacka);
+		(*stacka) = (*stacka)->next;
+		ft_lstadd_back(stacka, temp);
+		temp->next = NULL;
+	}
 }
 
 void	ft_rra(t_list **stacka)
@@ -46,7 +52,7 @@ void	ft_rra(t_list **stacka)
 	t_list	*temp;
 	t_list	*temp2;
 
-	if (!stacka)
+	if (!(*stacka))
 		return ;
 	temp = (*stacka);
 	temp2 = (*stacka);
@@ -55,25 +61,26 @@ void	ft_rra(t_list **stacka)
 		ft_sa(stacka);
 		return ;
 	}
-	while (temp->next)
-		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
-	temp->next = (*stacka);
-	(*stacka) = temp;
-	temp2->next = NULL;
-	write(1, "rra\n", 4);
+	if ((*stacka)->next)
+	{
+		while (temp->next)
+			temp = temp->next;
+		while (temp2->next->next)
+			temp2 = temp2->next;
+		temp->next = (*stacka);
+		(*stacka) = temp;
+		temp2->next = NULL;
+	}
 }
 
 void	ft_pa(t_list **stacka, t_list **stackb)
 {
 	t_list	*temp;
 
-	if (!stacka)
+	if (!(*stackb))
 		return ;
 	temp = (*stackb)->next;
 	(*stackb)->next = (*stacka);
 	(*stacka) = (*stackb);
 	(*stackb) = temp;
-	write(1, "pa\n", 3);
 }

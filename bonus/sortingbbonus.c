@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sortingb.c                                         :+:      :+:    :+:   */
+/*   sortingbbonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 13:31:17 by oryadi            #+#    #+#             */
-/*   Updated: 2023/01/07 18:19:29 by oryadi           ###   ########.fr       */
+/*   Created: 2023/01/07 15:01:52 by oryadi            #+#    #+#             */
+/*   Updated: 2023/01/08 16:45:37 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "push_swap.h"
+#include <libft.h>
+#include "push_swap_bonus.h"
 
 void	ft_sb(t_list **stackb)
 {
 	t_list	*temp;
 	t_list	*temp2;
 
-	if (!stackb)
+	if (!(*stackb))
 		return ;
-	temp2 = (*stackb);
-	temp = (*stackb)->next;
-	temp2->next = temp2->next->next;
-	temp->next = temp2;
-	(*stackb) = temp;
-	write(1, "sb\n", 3);
+	if ((*stackb)->next)
+	{
+		temp2 = (*stackb);
+		temp = (*stackb)->next;
+		temp2->next = temp2->next->next;
+		temp->next = temp2;
+		(*stackb) = temp;
+	}
 }
 
 void	ft_rb(t_list **stackb)
 {
 	t_list	*temp;
 
-	if (!stackb)
+	if (!(*stackb))
 		return ;
-	temp = (*stackb);
-	(*stackb) = (*stackb)->next;
-	ft_lstadd_back(stackb, temp);
-	temp->next = NULL;
-	write(1, "rb\n", 3);
+	if ((*stackb)->next)
+	{
+		temp = (*stackb);
+		(*stackb) = (*stackb)->next;
+		ft_lstadd_back(stackb, temp);
+		temp->next = NULL;
+	}
 }
 
 void	ft_rrb(t_list **stackb)
@@ -46,7 +50,7 @@ void	ft_rrb(t_list **stackb)
 	t_list	*temp;
 	t_list	*temp2;
 
-	if (!stackb)
+	if (!(*stackb))
 		return ;
 	temp = (*stackb);
 	temp2 = (*stackb);
@@ -55,25 +59,26 @@ void	ft_rrb(t_list **stackb)
 		ft_sb(stackb);
 		return ;
 	}
-	while (temp->next)
-		temp = temp->next;
-	while (temp2->next->next)
-		temp2 = temp2->next;
-	temp->next = (*stackb);
-	(*stackb) = temp;
-	temp2->next = NULL;
-	write(1, "rrb\n", 4);
+	if ((*stackb)->next)
+	{
+		while (temp->next)
+			temp = temp->next;
+		while (temp2->next->next)
+			temp2 = temp2->next;
+		temp->next = (*stackb);
+		(*stackb) = temp;
+		temp2->next = NULL;
+	}
 }
 
 void	ft_pb(t_list **stackb, t_list **stacka)
 {
 	t_list	*temp;
 
-	if (!stackb)
+	if (!(*stacka))
 		return ;
 	temp = (*stacka)->next;
 	(*stacka)->next = (*stackb);
 	(*stackb) = (*stacka);
 	(*stacka) = temp;
-	write(1, "pb\n", 3);
 }

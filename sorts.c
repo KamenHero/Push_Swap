@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorts.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 20:41:19 by oryadi            #+#    #+#             */
-/*   Updated: 2022/12/19 20:41:21 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/01/08 21:28:01 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_case5(t_list **stacka, t_list **stackb)
 	ft_case3(stacka);
 	while (*stackb)
 		ft_pa(stacka, stackb);
+	free (str);
 }
 
 int	ft_index(t_list *tmp, int i)
@@ -83,76 +84,36 @@ int	ft_index(t_list *tmp, int i)
 
 void	ft_othercase(t_list **stacka, t_list **stackb, int *str)
 {
-	int	middle;
-	int	offset;
-	int	start;
-	int	end;
-	int	n;
+	int		offset;
+	int		start;
+	int		end;
+	int		n;
+	t_data	data;
 
-	middle = ft_lstsize(*stacka) / 2;
-	if (ft_lstsize(*stacka) <= 10)
-		n = 5;
-	else if (ft_lstsize(*stacka) <= 150)
-		n = 8;
-	else
-		n = 18;
-	offset = ft_lstsize(*stacka) / n;
-	start = middle - offset;
-	end = middle + offset;
+	ft_3emr(stacka, &n, &data.middle, &offset);
+	data.str = str;
+	start = data.middle - offset;
+	end = data.middle + offset;
 	while (*stacka)
 	{
-		if (ft_lstsize(*stacka) == 1)
-			ft_pb(stackb, stacka);
+		ft_laststacka(stacka, stackb);
 		while (*stacka)
 		{
-			n = ft_search(stacka, str, start, end);
+			n = ft_search(stacka, data.str, start, end);
 			if (n == ft_lstsize(*stacka))
 			{
-				start -= offset;
-				end += offset;
-				if (start < 0)
-					start = 0;
-				if (end > middle * 2 - 1)
-					end = middle * 2 - 1;
+				ft_checkstartandend(&start, &end, data.middle, offset);
 				break ;
 			}
-			if (n <= ft_lstsize(*stacka) / 2)
-			{
-				while (n > 0)
-				{
-					ft_ra(stacka);
-					n--;
-				}
-			}
-			else
-			{
-				while (n < ft_lstsize(*stacka))
-				{
-					ft_rra(stacka);
-					n++;
-				}
-			}
-			ft_pb(stackb, stacka);
-			if ((*stackb)->next && (*stackb)->content < str[middle])
-				ft_rb(stackb);
+			ft_condition(stacka, stackb, n, data);
 		}
 	}
-	ft_backtostacka(stacka, stackb, str);
+	ft_backtostacka(stacka, stackb, data.str);
 }
 
-int	ft_search(t_list **stacka, int *str, int start, int end)
+void	ft_3emr(t_list **stacka, int *n, int *middle, int *offset)
 {
-	t_list	*tmp;
-	int		j;
-
-	tmp = (*stacka);
-	j = 0;
-	while (tmp)
-	{
-		if (tmp->content >= str[start] && tmp->content <= str[end])
-			return (j);
-		j++;
-		tmp = tmp->next;
-	}
-	return (j);
+	*middle = ft_lstsize(*stacka) / 2;
+	*n = ft_checkn(stacka);
+	*offset = ft_lstsize(*stacka) / *n;
 }

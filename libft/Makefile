@@ -1,11 +1,3 @@
-# #VARIABLES
-# KEY = VALUE
-
-# #RULES
-
-# target: prerequisites
-# #	command_line
-
 NAME = libft.a
 
 CC = cc
@@ -55,11 +47,6 @@ SRCS =  ft_atoi.c\
 		ft_lstclear_bonus.c\
 		ft_lstiter_bonus.c\
 		ft_lstmap_bonus.c\
-		# sorting.c\
-		# sortingb.c\
-		# sortingab.c\
-		# utility.c\
-		# toarray.c
 
 OBJ = $(SRCS:.c=.o)
 

@@ -19,17 +19,8 @@ void	ft_backtostacka(t_list **stacka, t_list **stackb, int *str)
 	i = ft_lstsize(*stackb) - 1;
 	while ((*stackb))
 	{
-		if (ft_index (*stackb, str[i]) < (i + 1) / 2)
-		{
-			while ((*stackb)->content != str[i])
-			{
-				if (i >= 1 && (*stackb)->content == str[i - 1])
-					ft_pa(stacka, stackb);
-				else
-					ft_rb(stackb);
-			}
-		}
-		else
+		ft__condistackb1(stacka, stackb, str, i);
+		if (ft_index(*stackb, str[i]) >= (i + 1) / 2)
 		{
 			while ((*stackb)->content != str[i])
 			{
@@ -47,5 +38,28 @@ void	ft_backtostacka(t_list **stacka, t_list **stackb, int *str)
 		}
 		i--;
 	}
-	free (str);
+	free(str);
+}
+
+void	ft__condistackb1(t_list **stacka, t_list **stackb, int *str, int i)
+{
+	if (ft_index(*stackb, str[i]) < (i + 1) / 2)
+	{
+		while ((*stackb)->content != str[i])
+		{
+			if (i >= 1 && (*stackb)->content == str[i - 1])
+				ft_pa(stacka, stackb);
+			else
+				ft_rb(stackb);
+		}
+	}
+}
+
+void	ft_condition(t_list **stacka, t_list **stackb, int n, t_data data)
+{
+	ft_condition1(stacka, n);
+	ft_condition2(stacka, n);
+	ft_pb(stackb, stacka);
+	if ((*stackb)->next && (*stackb)->content < data.str[data.middle])
+		ft_rb(stackb);
 }

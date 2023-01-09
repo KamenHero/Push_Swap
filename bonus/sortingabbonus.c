@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sortingab.c                                        :+:      :+:    :+:   */
+/*   sortingabbonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oryadi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 13:35:04 by oryadi            #+#    #+#             */
-/*   Updated: 2022/12/11 13:35:06 by oryadi           ###   ########.fr       */
+/*   Created: 2023/01/07 15:03:17 by oryadi            #+#    #+#             */
+/*   Updated: 2023/01/09 15:12:32 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "push_swap.h"
+#include <libft.h>
+#include "push_swap_bonus.h"
 
 void	ft_ss(t_list **stacka, t_list **stackb)
 {
@@ -29,6 +29,17 @@ void	ft_rrr(t_list **stacka, t_list **stackb)
 {
 	ft_rra(stacka);
 	ft_rrb(stackb);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while ((unsigned char)s1[i] && (unsigned char)s2[i]
+		&& (unsigned char)s1[i] == (unsigned char)s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 int	ft_checking(t_list *stacka)
