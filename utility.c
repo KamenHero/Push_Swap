@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 10:44:26 by oryadi            #+#    #+#             */
-/*   Updated: 2023/01/09 15:34:38 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/01/09 20:28:13 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,12 @@ t_list	*ft_linkin(int argc, char **argv)
 			str = ft_split(argv[argc - 1], ' ');
 			while (str[j])
 				j++;
+			if (j == 0)
+				ft_exit ();
 			while (j > 0)
 			{
 				ft_checkd(str[j - 1], stacka, str);
-				ft_lstadd_front(&stacka, ft_lstnew(ft_atoi(str[j - 1])));
-				j--;
+				ft_lstadd_front(&stacka, ft_lstnew(ft_atoi(str[(j--) - 1])));
 			}
 			ft_freed(str);
 			argc--;
