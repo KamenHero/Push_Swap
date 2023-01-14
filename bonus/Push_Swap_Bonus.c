@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 18:05:05 by oryadi            #+#    #+#             */
-/*   Updated: 2023/01/09 16:07:45 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/01/14 17:40:57 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ void	ft_condit(char *line, t_list **stacka, t_list **stackb)
 		ft_rrb(stackb);
 	else if (ft_strcmp(line, "pb\n") == 0)
 		ft_pb(stackb, stacka);
+	else if (ft_strcmp(line, "ss\n") == 0)
+		ft_ss(stackb, stacka);
+	else if (ft_strcmp(line, "rr\n") == 0)
+		ft_rr(stackb, stacka);
+	else if (ft_strcmp(line, "rrr\n") == 0)
+		ft_rrr(stackb, stacka);
 	else
 		ft_exit();
 	free(line);

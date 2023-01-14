@@ -6,7 +6,7 @@
 /*   By: oryadi <oryadi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 17:57:18 by oryadi            #+#    #+#             */
-/*   Updated: 2023/01/09 15:59:25 by oryadi           ###   ########.fr       */
+/*   Updated: 2023/01/14 17:40:39 by oryadi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_checking(t_list *stacka);
 void	ft_checkdup(t_list *stacka);
 void	ft_condit(char *line, t_list **stacka, t_list **stackb);
+void	ft_ss(t_list **stacka, t_list **stackb);
+void	ft_rr(t_list **stacka, t_list **stackb);
+void	ft_rrr(t_list **stacka, t_list **stackb);
 
 #endif
